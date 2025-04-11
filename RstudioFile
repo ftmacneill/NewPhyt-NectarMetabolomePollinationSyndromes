@@ -94,20 +94,418 @@ View(Edges_export)
 #Individual Level traits- here we test if individuals group by species 
 ##ANOSIM, Individual level Leaf traits (Figure S2) 
 
+discscs<-Leaves_IndividualLevel_discscs
+rownames(discscs)<-discscs$...1
+distance_matrix<-discscs[,2:167]
+rownames(distance_matrix)<-rownames(discscs)
+
+dat<-data.matrix(distance_matrix, rownames.force = NA)
+rownames(dat)<-colnames(dat)
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+library(vegan)
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress
+
+meta<-Meta_LeafIndividuals
+meta<-subset(meta, meta$SppID %in% rownames(data.scores.allsamp))
+setdiff(meta$SppID, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+View(arranged.alldata)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$SppID),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Pollinator
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+View(data)
+
+NMDS_LeafIndividuals<-data
+
+##Test grouping of species in chemical space on dis2, which is a square dissimilarity matrix (an acceptable input for ANOSIM)
+
+identical(colnames(dis2), rownames(dis2))##True
+identical(rownames(dis2), data$Row.Names)##True, we are in the right order 
+
+ano.allsamp_LeafIndividuals<-anosim(dis2, data$species2, distance="bray", permutations=999)
+print(ano.allsamp_LeafIndividuals)###R=.94, p =.001 
+
+##The NMDS code used to generate figure S2A 
+data<-NMDSdata_Leaves_IndividualLevel
+
+fig_LeafIndividuals_2A<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = species2))+ 
+    theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+    axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+    legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+    panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key=element_blank()) + 
+    labs(x = "NMDS1", colour = "Species", y = "NMDS2", shape = "Pollinator")
 
 
+fig_LeafIndividuals_2A
+
+#####################################################################################################################################################################################################################################################################################################
+
+#Recalculating with just Salvia species 
+
+dat2<-dat
+meta_Ind<-Meta_LeafIndividuals
+meta_Ind_sal<-subset(meta_Ind, meta_Ind$Salvia=="Salvia")
+
+dat2<-subset(dat2, rownames(dat2) %in% meta_Ind_sal$SppID)
+dat2<-t(dat2)
+dat2<-subset(dat2, rownames(dat2) %in% meta_Ind_sal$SppID)
+dat<-dat2
+dim(dat)##111 111
+dis2<-dat
+dis2<-as.matrix(dat)
+
+dis2_backup<-dis2
+
+library(vegan)
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress
 
 
+View(meta_Ind)
+meta<-meta_Ind_sal
+meta<-subset(meta, meta$SppID %in% rownames(data.scores.allsamp))
+setdiff(meta$SppID, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$SppID),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Pollinator
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+
+NMDS_LeafIndividuals_Salvia<-data
 
 
+ano.sal_LeafIndividuals<-anosim(dis2, data$species2, distance="bray", permutations=999)
+print(ano.sal_LeafIndividuals)###R=.88, p =.001 
+
+##Figure S2B 
+data<-NMDSdata_Leaves_IndividualLevel_JustSalvia
+
+fig_Leaf_SalviaIndividuals_S2B<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = species2))+ 
+    theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+    axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+    legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+    panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key=element_blank()) + 
+    labs(x = "NMDS1", colour = "Species", y = "NMDS2")
+
+fig_Leaf_SalviaIndividuals_S2B
+
+#################################################################################################################################
+#ANOSIM, Nectar individual Section 
+
+discscs<-Nectar_IndividualLevel_discscs
+rownames(discscs)<-discscs$...1
+distance_matrix<-discscs[,2:115]
+rownames(distance_matrix)<-rownames(discscs)
+
+dat<-distance_matrix
+
+MetaNec<-Meta_NectarIndividuals
+dat<-subset(dat, rownames(dat) %in% MetaNec$SppID)
+dat<-t(dat)
+dat<-subset(dat, rownames(dat) %in% MetaNec$SppID)
+View(dat)
+colnames(dat)<-rownames(dat)
+
+View(MetaNec)
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress###.2309
+
+View(data.scores.allsamp)
+
+library(readr)
+
+View(MetaNec)
+meta<-MetaNec
+meta<-subset(meta, meta$SppID %in% rownames(data.scores.allsamp))
+setdiff(meta$SppID, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+View(arranged.alldata)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
 
 
+df2<-data[match(target, data$Row.Names),]
+View(df2)
+
+meta2<-meta[match(target, meta$SppID),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Pollinator
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+View(data)
+
+identical(rownames(dis2), data$Row.Names)##True
+
+ano.NectarIndividuals<-anosim(dis2, data$species2, distance="bray", permutations=999)
+print(ano.NectarIndividuals)###R=.43, p =.001 
 
 
+##Figure S3A
+data<-NMDS_Nectar_IndividualLevel
+
+fig_Nectar_Individuals_Fig3A<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = species2))+ 
+    theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+    axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+    legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+    panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key=element_blank()) + 
+    labs(x = "NMDS1", colour = "Species", y = "NMDS2", shape = "Pollinator")
+
+fig_Nectar_Individuals_Fig3A
+
+#####################################################################################################################################################################################################################################################################################################
+
+#Recalculating, Just Salvia 
+
+View(dat2)
+View(meta_Ind)
+meta_Ind_sal<-subset(meta, meta$Salvia=="SALVIA")
+
+dat2<-subset(dat, rownames(dat) %in% meta_Ind_sal$SppID)
+dat2<-t(dat2)
+dat2<-subset(dat2, rownames(dat2) %in% meta_Ind_sal$SppID)
+dat<-dat2
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress###.20
+
+View(meta_Ind)
+meta<-meta_Ind_sal
+meta<-subset(meta, meta$SppID %in% rownames(data.scores.allsamp))
+setdiff(meta$SppID, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+
+meta2<-meta[match(target, meta$SppID),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Pollinator
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+
+identical(colnames(dis2), data$Row.Names)##True
+
+ano.NectarSalviaIndividuals<-anosim(dis2, data$species2, distance="bray", permutations=999)
+print(ano.NectarSalviaIndividuals)###R=.35, p =.001 
+
+##Figure S3B 
+data<-NMDS_Nectar_IndividualLevel_JustSalvia_
+
+fig_NectarSalviaIndividuals_S3B<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = species2))+ 
+    theme(axis.text.y = element_text(colour = "black", size = 12, face = "bold"), 
+    axis.title.x = element_text(face = "bold", size = 14, colour = "black"), 
+    legend.title = element_text(size = 14, colour = "black", face = "bold"), 
+    panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key=element_blank()) + 
+    labs(x = "NMDS1", colour = "Species", y = "NMDS2", shape = "Pollinator")
 
 
+fig_NectarSalviaIndividuals_S3B
 
+###############################################################################################################################################################################################################################################
+##ANOSIM, Species level Leaf traits (Figure 5a,b)
 
+discscs<-Leaf_SpeciesLevel_discscs
+rownames(discscs)<-discscs$...1
+distance_matrix<-discscs[,2:20]
+rownames(distance_matrix)<-rownames(discscs)
+
+dat<-data.matrix(distance_matrix, rownames.force = NA)
+rownames(dat)<-colnames(dat)
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress###.1357
+
+meta<-SpeciesLevel_meta
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+## align them in the same order 
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$Species3),]
+
+data<-df2
+meta<-meta2
+
+data$Pollinator<-meta$Poll
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$species3<-meta$Species3
+data$Salvia<-meta$Salvia
+View(data)
+
+NMDS_LeafSpecies_AllSpecies<-data
+
+identical(rownames(dis2), data$Row.Names)
+
+ano.LeafSpecies<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.LeafSpecies)###R=-.05, p=.876
+
+##Exact figure 5A 
+data<-NMDSdata_LeafSpecies_AllSpecies
+
+fig_LeafSpecies_All<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+
+  theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
+
+fig_LeafSpecies_All<-fig_LeafSpecies_All + scale_color_manual(values=c("cornflowerblue","red3"))
+
+fig_LeafSpecies_All
+
+###Just Salvia 
+meta_SalviaSpecies<-subset(meta, meta$Salvia=="YES")
+
+dat2<-subset(dat, rownames(dat) %in% meta_SalviaSpecies$Species3)
+dat2<-t(dat2)
+dat2<-subset(dat2, rownames(dat2) %in% meta_SalviaSpecies$Species3)
+dat<-dat2
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress###.0.1360
+
+meta<-meta_SalviaSpecies
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$Species3),]
+data<-df2
+meta<-meta2
+
+data$Pollinator<-meta$Poll
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$species3<-meta$Species3
+data$Salvia<-meta$Salvia
+
+NMDS_LeafSpecies_Salvia<-data
+identical(rownames(dis2), data$Row.Names)
+
+ano.SalviaSpecies_Leaf<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.SalviaSpecies_Leaf)###R=.01, p=.41
+
+###w ellipse 
+data<-NMDSdata_LeafSpecies_JustSalvia
+  
+fig_Leaf_SalivaSpecies_5B<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+ 
+ theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
+
+fig_Leaf_SalivaSpecies_5B<-fig_Leaf_SalivaSpecies_5B + scale_color_manual(values=c("cornflowerblue","red3"))
+
+##Fig 5B
+
+fig_Leaf_SalivaSpecies_5B
+
+####################################################################################################################################################################################
+
+#While ANOSIM doesn't detect different grouping between the leaves based on Syndrome, visually it appears the bee-leaves occupy less chemical space so we followed up with a Wilcoxon Rank Sum test. 
 
 
 
