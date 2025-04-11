@@ -1,0 +1,123 @@
+#R file
+
+#Getting set up 
+##This script includes data and analyses for MacNeill et al. 2025 "Nectar metabolomes contribute to pollination syndromes". 
+##In this repository there are analyses for individual level data, and our the three main hypotheses tested: Chemical pollination syndrome, 
+##Passive Leaking, and Phylogenetic signal. Data files needed to run these analyses can be found on the github page, mzXML files for the samples 
+##can be found on a massIVE repository here: https://gnps.ucsd.edu/ProteoSAFe/result.jsp?task=e6f30ec057334e87aa5e822b9ff205a9&view=advanced_view
+
+
+##Step one: Install Packages 
+library(picante)
+library(ape)
+library(adephylo)
+library(ade4)
+library(phylobase)
+library(geiger)
+library(phytools)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(phylosignal)
+library(gghighlight)
+library(lmerTest)
+library(lme4)
+library(MASS)
+library(viridis)
+library(tidyverse)
+library(vegan)
+library(readr)
+
+
+#Calculating species averages from Individual averages- Here we calculate for leaves but the process is the same for Nectar 
+##Example of calculating species level traits from individual level traits 
+##This is also how we would calculate individual level data for individuals which we have multiple samples for (average across the samples to get an individual level profile)
+
+
+IndLevel<-as.data.frame(Heat_Leaves_IndividualLevel)
+IndLevel<-IndLevel[,2:167]
+rownames(IndLevel)<-Heat_Leaves_IndividualLevel$row.ID
+
+IndLevel<-t(IndLevel)
+IndLevel<-as.data.frame(IndLevel)
+IndLevel$"ATTRIBUTE_sppID"<-rownames(IndLevel)
+
+
+metaInd<-Meta_LeafIndividuals
+metaInd$ATTRIBUTE_sppID<-metaInd$SppID
+dim(IndLevel)#166 8522
+
+IndLevel_long<-merge(metaInd, IndLevel, by="ATTRIBUTE_sppID")
+IndLevel_long<-IndLevel_long%>%dplyr::select(-c("SppID", "ATTRIBUTE_sppID","Pollinator","Species","Salvia"))
+dim(IndLevel_long)##166 8522
+
+##This dataframe has one grouping colums (species) that we pulled in from the metadata and the rest are numeric, where we will average across groups to get species averages across individuals 
+
+SppLevel<-IndLevel_long %>%
+  group_by(Species2) %>%
+  summarise(across(.cols=where(is.numeric), ~ mean(.x, na.rm = TRUE))) 
+
+##SppLevel is the species level means 
+dim(IndLevel_long) ##166 8522
+dim(SppLevel) ##19 8522
+ 
+SppLevel<-t(SppLevel)
+
+
+SppLevel<-as.data.frame(SppLevel)
+
+
+header.true <- function(df) {
+  names(df) <- as.character(unlist(df[1,]))
+  df[-1,]
+}
+SppLevel<-header.true(SppLevel)
+SppLevel_num<-lapply(SppLevel, as.numeric)
+SppLevel_num2<-as.data.frame(SppLevel_num)
+is.numeric(SppLevel_num2)##False
+is.numeric(SppLevel_num2$Anisacanthus.quadrifidus)##TRUE
+rownames(SppLevel_num2)<-rownames(SppLevel)
+SppLevel<-SppLevel_num2
+
+#write.csv(SppLevel, file="Heat_SpeciesLevel_traits.csv")
+network<-network_file
+
+compounds<-rownames(SppLevel)
+edge_edit1<-subset(network, network$CLUSTERID1 %in% compounds)
+edge_edit2<-subset(edge_edit1, edge_edit1$CLUSTERID2 %in% compounds)
+
+Edges_export<-edge_edit2
+View(Edges_export)
+#write.csv(Edges_export, file="Leaves_networkfile.csv")
+
+
+#Individual Level traits- here we test if individuals group by species 
+##ANOSIM, Individual level Leaf traits (Figure S2) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
