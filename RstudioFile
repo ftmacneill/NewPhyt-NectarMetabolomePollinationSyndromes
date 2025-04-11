@@ -507,7 +507,98 @@ fig_Leaf_SalivaSpecies_5B
 
 #While ANOSIM doesn't detect different grouping between the leaves based on Syndrome, visually it appears the bee-leaves occupy less chemical space so we followed up with a Wilcoxon Rank Sum test. 
 
+####Reduced Variance code in foliar leaves code (Figure 5b) 
 
+cscs.leaves = Leaf_SpeciesLevel_discscs
+
+rownames(cscs.leaves)<-cscs.leaves$...1
+distance_matrix<-cscs.leaves[,2:20]
+rownames(distance_matrix)<-rownames(cscs.leaves)
+cscs.leaves<-distance_matrix
+
+nmds.leaves.salvia = NMDSdata_LeafSpecies_JustSalvia
+nmds.leaves.all = NMDSdata_LeafSpecies_AllSpecies
+
+head(nmds.leaves.salvia)
+dim(cscs.leaves)##19 19 
+
+###Just Salvia 
+cscs.leaves.salvia = cscs.leaves[which(row.names(cscs.leaves) %in% nmds.leaves.salvia$species3), which(names(cscs.leaves) %in% nmds.leaves.salvia$species3)]
+dim(cscs.leaves.salvia)
+rownames(cscs.leaves.salvia)<-colnames(cscs.leaves.salvia) 
+# [1] 13 13
+
+cscs.bee = cscs.leaves.salvia[which(row.names(cscs.leaves.salvia) %in% nmds.leaves.salvia$species3[which(nmds.leaves.salvia$Pollinator == "Bee")]),which(names(cscs.leaves.salvia) %in% nmds.leaves.salvia$species3[which(nmds.leaves.salvia$Pollinator == "Bee")])]
+rownames(cscs.bee)<-colnames(cscs.bee)
+
+cscs.bird = cscs.leaves.salvia[which(row.names(cscs.leaves.salvia) %in% nmds.leaves.salvia$species3[which(nmds.leaves.salvia$Pollinator == "Bird")]),which(names(cscs.leaves.salvia) %in% nmds.leaves.salvia$species3[which(nmds.leaves.salvia$Pollinator == "Bird")])]
+rownames(cscs.bird)<-colnames(cscs.bird)
+
+cscs.bee
+
+nmds.leaves.salvia$Pollinator
+mean.bee = mean(unique(unlist(cscs.bee))[-1])
+mean.bee
+
+
+mean.bird = mean(unique(unlist(cscs.bird))[-1])
+mean.bird
+
+diff.obs = mean.bird - mean.bee
+diff.obs
+
+
+mean.bee = mean(unique(unlist(cscs.bee))[-1])
+
+mean.bird = mean(unique(unlist(cscs.bird))[-1])
+
+diff.obs = mean.bird - mean.bee
+
+##Just Salvia
+wilcox.test(unique(unlist(cscs.bird))[-1], unique(unlist(cscs.bee))[-1], alt = "greater")
+#	Wilcoxon rank sum exact test
+
+#data:  unique(unlist(cscs.bird))[-1] and unique(unlist(cscs.bee))[-1]
+#W = 255, p-value = 0.0006366
+#alternative hypothesis: true location shift is greater than 0
+#
+
+
+
+####All species 
+dim(cscs.leaves)
+# [1] 19 19
+
+cscs.bee = cscs.leaves[which(row.names(cscs.leaves) %in% nmds.leaves.all$species3[which(nmds.leaves.all$Pollinator == "Bee")]),which(names(cscs.leaves) %in% nmds.leaves.all$species3[which(nmds.leaves.all$Pollinator == "Bee")])]
+rownames(cscs.bee)<-colnames(cscs.bee)
+
+cscs.bird = cscs.leaves[which(row.names(cscs.leaves) %in% nmds.leaves.all$species3[which(nmds.leaves.all$Pollinator == "Bird")]),which(names(cscs.leaves) %in% nmds.leaves.all$species3[which(nmds.leaves.all$Pollinator == "Bird")])]
+rownames(cscs.bird)<-colnames(cscs.bird)
+
+
+mean.bee = mean(unique(unlist(cscs.bee))[-1])
+mean.bee
+
+
+mean.bird = mean(unique(unlist(cscs.bird))[-1])
+mean.bird
+
+
+diff.obs = mean.bird - mean.bee
+diff.obs
+
+
+
+##All species
+wilcox.test(unique(unlist(cscs.bird))[-1], (unique(unlist(cscs.bee))[-1]), alt = "greater")
+
+#
+#	Wilcoxon rank sum exact test
+#data:  unique(unlist(cscs.bird))[-1] and (unique(unlist(cscs.bee))[-1])
+#W = 1128, p-value = 0.001125
+#alternative hypothesis: true location shift is greater than 0
+
+####################################################################################################################################################
 
 
 
