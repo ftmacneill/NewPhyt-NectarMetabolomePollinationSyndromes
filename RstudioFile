@@ -1491,11 +1491,142 @@ shapevec[which(reglog.bird$Species == "Salvia_microphylla")] = 19
 plot(reglog.bird$Nectar ~ reglog.bird$Leaves, pch = shapevec, col = colvec)
 
 PassiveLeakingPlot_AllBirdSpp<-plot(reglog.bird$Nectar ~ reglog.bird$Leaves, pch = shapevec, col = colvec)
+#####################################################################################################################################################################################################################################################################################################
+#Bee Salvia
+
+reglog.salv = reglog[grep("Salvia", reglog$Species),]
+
+head(reglog.salv)
 
 
+levels(as.factor(reglog.salv$Species))
+ 
+plot(reglog.salv$Nectar ~ reglog.salv$Leaves)
 
 
+reglog.salv.bee = reglog.salv[which(reglog.salv$Pollinator == "BEE"),]
 
+dim(reglog.salv.bee)
+
+
+mod = lmer(reglog.salv.bee$Nectar ~ reglog.salv.bee$Leaves + (1 + reglog.salv.bee$Leaves|Species) + (1|Individual) , data = reglog.salv.bee)
+
+summary(mod)
+##reglog.salv.bee$Leaves  -0.4399     0.2027  3.9170  -2.170  0.09724
+
+coef(summary(mod))
+##Fig Sal Bee 
+levels(as.factor(reglog.salv.bee$Species))
+
+plot(reglog.salv.bee$Nectar ~ reglog.salv.bee$Leaves)
+
+colvec = rep("black", nrow(reglog.salv.bee))
+colvec[which(reglog.salv.bee$Species == "Salvia_sinaloensis")] = "blue"
+colvec[which(reglog.salv.bee$Species == "Salvia_ballotiflora")] = "dodgerblue3"
+colvec[which(reglog.salv.bee$Species == "Salvia_chionophylla")] = "dodgerblue"
+colvec[which(reglog.salv.bee$Species == "Salvia_azurea")] = "deepskyblue1"
+colvec[which(reglog.salv.bee$Species == "Salvia_farinaceae")] = "lightslateblue"
+colvec[which(reglog.salv.bee$Species == "Salvia_leucantha")] = "purple1"
+
+shapevec = rep(16, nrow(reglog.salv.bee))
+shapevec[which(reglog.salv.bee$Species == "Salvia_sinaloensis")] = 4
+shapevec[which(reglog.salv.bee$Species == "Salvia_ballotiflora")] = 5
+shapevec[which(reglog.salv.bee$Species == "Salvia_chionophylla")] = 6
+shapevec[which(reglog.salv.bee$Species == "Salvia_azurea")] = 7
+shapevec[which(reglog.salv.bee$Species == "Salvia_farinaceae")] = 8
+shapevec[which(reglog.salv.bee$Species == "Salvia_leucantha")] = 9
+
+
+plot(reglog.salv.bee$Nectar ~ reglog.salv.bee$Leaves, pch = shapevec, col = colvec)
+
+PassiveLeakingPlot_BeeSalvia<-plot(reglog.salv.bee$Nectar ~ reglog.salv.bee$Leaves, pch = shapevec, col = colvec)
+#####################################################################################################################################################################################################################################################################################################
+#Bird Salvia
+reglog.salv.bird = reglog.salv[which(reglog.salv$Pollinator == "BIRD"),]
+
+dim(reglog.salv.bird)
+
+mod = lmer(reglog.salv.bird$Nectar ~ reglog.salv.bird$Leaves + (1 + reglog.salv.bird$Leaves|Species) + (1|Individual) , data = reglog.salv.bird)
+
+summary(mod)
+##reglog.salv.bird$Leaves   0.3580     0.2704 2.2367   1.324   0.3046  
+
+coef(summary(mod))
+
+levels(as.factor(reglog.salv.bird$Species))
+
+plot(reglog.salv.bird$Nectar ~ reglog.salv.bird$Leaves)
+
+colvec = rep("black", nrow(reglog.salv.bird))
+colvec[which(reglog.salv.bird$Species == "Salvia_darcyi")] = "orangered1"
+colvec[which(reglog.salv.bird$Species == "Salvia_coccinea")] = "red1"
+colvec[which(reglog.salv.bird$Species == "Salvia_blepharophylla")] = "red4"
+colvec[which(reglog.salv.bird$Species == "Salvia_roemeriana")] = "firebrick3"
+colvec[which(reglog.salv.bird$Species == "Salvia_regla")] = "brown2"
+colvec[which(reglog.salv.bird$Species == "Salvia_greggii")] = "darkorange1"
+colvec[which(reglog.salv.bird$Species == "Salvia_microphylla")] = "orange1"
+
+shapevec = rep(17, nrow(reglog.salv.bird))
+shapevec[which(reglog.salv.bird$Species == "Salvia_darcyi")] = 13
+shapevec[which(reglog.salv.bird$Species == "Salvia_coccinea")] = 14
+shapevec[which(reglog.salv.bird$Species == "Salvia_blepharophylla")] = 15
+shapevec[which(reglog.salv.bird$Species == "Salvia_roemeriana")] = 16
+shapevec[which(reglog.salv.bird$Species == "Salvia_regla")] = 17
+shapevec[which(reglog.salv.bird$Species == "Salvia_greggii")] = 18
+shapevec[which(reglog.salv.bird$Species == "Salvia_microphylla")] = 19
+
+
+plot(reglog.salv.bird$Nectar ~ reglog.salv.bird$Leaves, pch = shapevec, col = colvec)
+
+PassiveLeakingPlot_BirdSalvia<-plot(reglog.salv.bird$Nectar ~ reglog.salv.bird$Leaves, pch = shapevec, col = colvec)
+
+
+#####################################################################################################################################################################################################################################################################################################
+######################################################################################################################################################################################################################################################################################################
+
+##Drawing heatmap of alkaloids 
+
+
+library("pheatmap")
+
+meta<-SpeciesLevel_meta
+heat.class = Heat_Nectar_SpeciesLevel_Alkaloids
+heat.class<-as.data.frame(heat.class)
+rownames(heat.class)<-heat.class$row.ID
+heat.class<-heat.class[,2:20]
+
+HeatClass2<-Dend_tipdataHeatClass2<-Dend_tipdataHeatClass2<-Dend_tipdata
+HeatClass2<-subset(HeatClass2, HeatClass2$row.ID %in% rownames(heat.class))
+heat.class2<-HeatClass2[,2:3]
+heat.class2<-as.data.frame(heat.class2)
+rownames(heat.class2)<-HeatClass2$row.ID
+
+
+heatmap.ht = heat.class2
+for(i in 1:ncol(heatmap.ht)){
+	names(heatmap.ht)[i] = strsplit(names(heatmap.ht)[i], "[.]")[[1]][1]
+}
+
+mastertable<-MasterConf
+
+newcompnames = rep("NA",nrow(heatmap.ht))
+for(i in 1:nrow(heatmap.ht)){
+	newcompnames[i] = paste(mastertable$NPC.class[which(mastertable$row.ID == row.names(heatmap.ht)[i])],as.character(i), sep = "_")
+}
+
+row.names(heatmap.ht) = newcompnames
+
+heatmap.ht = heatmap.ht[which(rowSums(heatmap.ht) > 0),]
+heatmap = capture.output(pheatmap(as.matrix(heatmap.ht))) 
+
+clrsp <- colorRampPalette(c("white", "darkgreen"))   
+clrs <- clrsp(200) 
+
+##For contrast keep dark color at darkgreen 
+
+breaks1 <- seq(-1, 1, length.out = 200)
+
+heatmap = capture.output(pheatmap(as.matrix(heatmap.ht), color=clrs)) 
 
 
 
