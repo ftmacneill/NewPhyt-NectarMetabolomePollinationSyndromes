@@ -600,10 +600,197 @@ wilcox.test(unique(unlist(cscs.bird))[-1], (unique(unlist(cscs.bee))[-1]), alt =
 
 ####################################################################################################################################################
 
+discscs<-Nectar_SpeciesLevel_discscs
+rownames(discscs)<-discscs$...1
+distance_matrix<-discscs[,2:20]
+rownames(distance_matrix)<-rownames(discscs)
+
+dat<-data.matrix(distance_matrix, rownames.force = NA)
+rownames(dat)<-colnames(dat)
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress
+
+meta<-SpeciesLevel_meta
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$Species3),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species3
+data$Pollinator<-meta$Poll
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+data$species3<-meta$Species3
+
+NMDS_NecSpp_all<-data
+
+identical(rownames(dis2), data$Row.Names)
+ano.NectarSpecies<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.NectarSpecies)
+
+##Figure version 
+data<-NMDSdata_NectarSpecies_AllSpecies
+
+Fig_NectarSpecies_3A<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+
+    theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
 
 
+Fig_NectarSpecies_3A<-Fig_NectarSpecies_3A+ scale_color_manual(values=c("cornflowerblue","red3"))
+Fig_NectarSpecies_3A
+#####################################################################################################################################################################################################################################################################################################
+####Recalculate NMDS with just Salvia 
+meta_SalviaSpecies<-subset(meta, meta$Salvia=="YES")
+
+dat2<-subset(dat, rownames(dat) %in% meta_SalviaSpecies$Species3)
+dat2<-t(dat2)
+dat2<-subset(dat2, rownames(dat2) %in% meta_SalviaSpecies$Species3)
+dat<-dat2
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress
+
+meta<-meta_SalviaSpecies
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+meta2<-meta[match(target, meta$Species3),]
+
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Poll
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+data$species3<-meta$Species3
+identical(rownames(dis2), data$Row.Names)##True
+NMDS_NecSpp_Salvia<-data
+
+ano.NectarSpeciesSalvia<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.NectarSpeciesSalvia)
+
+###Code for figure 3B 
+
+data<-NMDSdata_NectarSpecies_JustSalvia 
+fig_NectarSpecies_Salvia_3B<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+
+    theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
+
+fig_NectarSpecies_Salvia_3B<-fig_NectarSpecies_Salvia_3B+ scale_color_manual(values=c("cornflowerblue","red3"))
+fig_NectarSpecies_Salvia_3B
 
 
+##ANOSIM, Nectar Alkaloids all species 
+discscs<-Nectar_SpeciesLevel_Alkaloids_discscs
+rownames(discscs)<-discscs$...1
+distance_matrix<-discscs[,2:20]
+rownames(distance_matrix)<-rownames(discscs)
+
+dat<-data.matrix(distance_matrix, rownames.force = NA)
+rownames(dat)<-colnames(dat)
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress
+
+meta<-SpeciesLevel_meta
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+View(arranged.alldata)
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+View(df2)
+
+meta2<-meta[match(target, meta$Species3),]
+data<-df2
+meta<-meta2
+
+data$Species<-meta$Species3
+data$Pollinator<-meta$Poll
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+data$species3<-meta$Species3
+View(data)
+
+NMDS_NecSpp_all<-data
+identical(rownames(dis2), data$Row.Names)
+ano.NecConfSpp_alk<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.NecConfSpp_alk)
+
+simper.AlkAll<-simper(dis2, data$Pollinator)
+summary(simper.AlkAll)
+
+##Figure 4a 
+data<-NMDSdata_NectarAlkaloids_AllSpecies_forPhylo
+fig_Nec_Alkaloids<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+
+    theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
+
+fig_Nec_Alkaloids<-fig_Nec_Alkaloids+ scale_color_manual(values=c("cornflowerblue","red3"))
+fig_Nec_Alkaloids
+
+#####################################################################################################################################################################################################################################################################################################
+#Recalculating with just Salvia 
 
 
 
