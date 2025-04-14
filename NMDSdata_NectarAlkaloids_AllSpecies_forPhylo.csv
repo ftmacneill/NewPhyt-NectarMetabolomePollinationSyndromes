@@ -1,0 +1,20 @@
+,Row.Names,NMDS1,NMDS2,Species,Pollinator,Pair,species2,Salvia,species3
+Anisacanthus.quadrifidus,Anisacanthus.quadrifidus,-0.197392698,0.415727395,Anisacanthus.quadrifidus,Bird,4,Anisacanthus quadrifidus,NO,Anisacanthus_quadrifidus
+Physostegia.virginiana,Physostegia.virginiana,-0.242309174,-0.133256253,Physostegia.virginiana,Bee,NA,Physostegia virginiana,NO,Physostegia_virginiana
+Ruellia.brittoniana,Ruellia.brittoniana,0.237796412,0.034822943,Ruellia.brittoniana,Bee,4,Ruellia brittoniana,NO,Ruellia_brittoniana
+Salvia.azurea,Salvia.azurea,0.291594162,-0.00619851,Salvia.azurea,Bee,1,Salvia azurea,YES,Salvia_azurea
+Salvia.ballotiflora,Salvia.ballotiflora,0.228511008,-0.013913717,Salvia.ballotiflora,Bee,3,Salvia ballotiflora,YES,Salvia_ballotiflora
+Salvia.blepharophylla,Salvia.blepharophylla,-0.278855257,-0.023410754,Salvia.blepharophylla,Bird,2,Salvia blepharophylla,YES,Salvia_blepharophylla
+Salvia.chionophylla,Salvia.chionophylla,0.291594162,-0.00619851,Salvia.chionophylla,Bee,2,Salvia chionophylla,YES,Salvia_chionophylla
+Salvia.coccinea,Salvia.coccinea,-0.083151492,-0.030478749,Salvia.coccinea,Bird,1,Salvia coccinea,YES,Salvia_coccinea
+Salvia.darcyi,Salvia.darcyi,-0.305860508,-0.037403015,Salvia.darcyi,Bird,NA,Salvia darcyi,YES,Salvia_darcyi
+Salvia.farinacea,Salvia.farinacea,0.241695879,-0.030904485,Salvia.farinacea,Bee,NA,Salvia farinacea,YES,Salvia_farinacea
+Salvia.greggii,Salvia.greggii,-0.250951802,-0.076709024,Salvia.greggii,Bird,NA,Salvia greggii,YES,Salvia_greggii
+Salvia.leucantha,Salvia.leucantha,-0.218972229,-0.037746965,Salvia.leucantha,Bee,NA,Salvia leucantha,YES,Salvia_leucantha
+Salvia.microphylla,Salvia.microphylla,0.192649922,0.113240031,Salvia.microphylla,Bird,NA,Salvia microphylla,YES,Salvia_microphylla
+Salvia.regla,Salvia.regla,-0.278855257,-0.023410754,Salvia.regla,Bird,3,Salvia regla,YES,Salvia_regla
+Salvia.roemeriana,Salvia.roemeriana,0.006745979,0.445246852,Salvia.roemeriana,Bird,NA,Salvia roemeriana,YES,Salvia_roemeriana
+Salvia.sinaloensis,Salvia.sinaloensis,0.280888913,-0.033530208,Salvia.sinaloensis,Bee,NA,Salvia sinaloensis,YES,Salvia_sinaloensis
+Scutellaria.suffrutescens,Scutellaria.suffrutescens,-0.246608289,-0.026907157,Scutellaria.suffrutescens,Bird,5,Scutellaria suffrutescens,NO,scutellaria_suffrutescens
+Scutellaria.wrightii,Scutellaria.wrightii,0.281502922,0.024224564,Scutellaria.wrightii,Bee,5,Scutellaria wrightii,NO,Scutellaria_wrightii
+Stachys.coccinea,Stachys.coccinea,0.049977349,-0.553193685,Stachys.coccinea,Bird,NA,Stachys coccinea,NO,Stachys_coccinea

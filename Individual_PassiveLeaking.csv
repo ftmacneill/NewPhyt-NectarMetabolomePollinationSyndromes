@@ -1,0 +1,264 @@
+row.ID,Individual,LeafConc,NectarConc,ATTRIBUTE_species,Pollinator,NPC.pathway,NPC.superclass,NPC.class
+10769,RueBrit_19,2465.499,8250.497,Ruellia_brittoniana,BEE,Alkaloids,Tyrosine alkaloids,Phenylethylamines
+10769,SalReg_B1,2183.863,2102.498,Salvia_regla,BIRD,Alkaloids,Tyrosine alkaloids,Phenylethylamines
+10769,SalMic_1,8113.821,1815.438,Salvia_microphylla,BIRD,Alkaloids,Tyrosine alkaloids,Phenylethylamines
+10769,SalReg_W4,3490.817,6522.224,Salvia_regla,BIRD,Alkaloids,Tyrosine alkaloids,Phenylethylamines
+10812,AniQWr_2,111137.7,703.8006,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+10812,AniQWr_4,39912.31,2835.608,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+10907,SalGreg_5,50457.812,852.2561,Salvia_greggii,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+11130,AniQWr_4,128609.5,4146.511,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavanones
+1127,PhysVir_3,2853.383,15079.805,Physostegia_virginiana,BEE,Fatty acids,Fatty esters,Wax monoesters
+1196,StaCoc_2,32225.06,2494.91,Stachys_Coccinea,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+11970,AniQWr_1,31039.67,7738.817,Anisacanthus_quadrifidus,BIRD,Alkaloids,Pseudoalkaloids,pteridine alkaloids
+12336,SalAzu_12,129952.124,3361.505,Salvia_azurea,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+12430,SalMic_4,278323.159,598.1464,Salvia_microphylla,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavanones
+12837,SalRoe_6,640437.6,22345.202,Salvia_roemeriana,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+12837,ScutWri_4,419154.33,20035.901,Scutellaria_wrightii,BEE,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+13487,SalChio_8,30484.292,1968.835,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+13670,SalLeu_26,31085.316,3288.632,Salvia_leucantha,BEE,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+14032,SalGreg_5,67053.09,2090.921,Salvia_greggii,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+14063,SalAzu_12,189730.402,2069.996,Salvia_azurea,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+1429,SalFar_13,13636.0442,718844.493,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalCoc_3,1076.1101,10977.818,Salvia_coccinea,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalFar_10,48085.9,1022122.667,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,ScutWri_6,4009.0121,121064.489,Scutellaria_wrightii,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,AniQWr_3,4539.9326,1813.576,Anisacanthus_quadrifidus,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalAzu_10,7405.538,482941.351,Salvia_azurea,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalChio_8,4443.8894,2189046.332,Salvia_chionophylla,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalAzu_12,2459.2435,773759.934,Salvia_azurea,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalCoc_4,1490.8059,6795.713,Salvia_coccinea,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,ScutWri_4,2370.4167,210665.905,Scutellaria_wrightii,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalBall_3,8011.2828,1489149.217,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalBall_5,8267.9448,2034137.515,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,RueBrit_19,3019.2063,39310.489,Ruellia_brittoniana,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,ScutSuf_8,7922.141,8484.791,Scutellaria_suffrutescens,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_22,17188.3108,37821.232,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalBall_2,6600.57,1697308.654,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalChio_6,10749.1437,2895260.509,Salvia_chionophylla,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_23,9110.6778,14947.079,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,AniQWr_7,3162.5462,22606.808,Anisacanthus_quadrifidus,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalBall_1,4022.9876,3225247.073,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_21,18992.9909,19388.492,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,AniQWr_1,3255.1798,3652.744,Anisacanthus_quadrifidus,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalFar_12,25542.4748,2083272.765,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,ScutWri_5,2874.5491,98649.876,Scutellaria_wrightii,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalFar_20,13760.9237,838546.596,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_20,26806.4481,21247.353,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalSin_4,4843.5352,916808.472,Salvia_sinaloensis,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalCoc_11,5316.5853,2413.149,Salvia_coccinea,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_26,5244.7731,4766.093,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalBall_4,2042.1053,3627970.162,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalLeu_5,9635.8917,5124.211,Salvia_leucantha,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1429,SalMic_1,104383.4474,2006.553,Salvia_microphylla,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+14814,ScutSuf_B2,3611664.615,3412.271,Scutellaria_suffrutescens,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+14814,ScutSuf_B1,2832337.383,11485.787,Scutellaria_suffrutescens,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+15102,SalCoc_4,634984.941,1125.005,Salvia_coccinea,BIRD,Shikimates and Phenylpropanoids,Lignans,Cinnamic acids and derivatives
+15642,SalChio_8,12389.634,1410.235,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+15721,SalGreg_4,83716.27,9697.928,Salvia_greggii,BIRD,Shikimates and Phenylpropanoids,Isoflavonoids,Isoflavones
+16646,SalAzu_11,107050.685,4467.085,Salvia_azurea,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+16927,SalChio_1,860586.162,6799.703,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+16979,SalChio_1,796627.879,7748.008,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Gibberellins
+16979,SalChio_8,375073.935,1985.131,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Gibberellins
+17524,SalChio_8,1284978.621,9621.771,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+17534,SalDar_3,4092.501,1065.734,Salvia_darcyi,BIRD,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18091,SalFar_20,648722.47,3834.568,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18091,SalFar_10,3051410.36,12017.56,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18091,SalFar_13,997212.09,10315.77,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18091,SalLeu_5,2631673.89,4920.012,Salvia_leucantha,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18091,SalLeu_20,1393190.78,5709.436,Salvia_leucantha,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18160,SalFar_20,568772.258,3172.172,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18160,SalFar_13,869900.64,9755.882,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18160,SalFar_10,2833871.807,11318.478,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+18160,SalLeu_20,207966.989,5159.73,Salvia_leucantha,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+19228,SalChio_8,64576.363,1616.65,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+19582,SalAzu_12,74964.5876,3693.084,Salvia_azurea,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+19584,SalFar_20,23644.017,2224.245,Salvia_farinaceae,BEE,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+19584,ScutWri_5,170332.858,7536.175,Scutellaria_wrightii,BEE,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+19653,SalFar_3,370965.316,5892.362,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+1989,AniQWr_1,74221.716,2935.475,Anisacanthus_quadrifidus,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1989,SalBall_2,16569.812,185930.02,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1989,SalFar_3,13062.362,94778.791,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1992,SalBall_2,7008.9176,67506.96,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+1992,SalFar_3,4728.9583,42273.19,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+19928,SalFar_10,312998.133,2621.456,Salvia_farinaceae,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+20212,SalChio_8,698559.4,9871.294,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+20221,SalChio_8,915087.3,8621.991,Salvia_chionophylla,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+20300,ScutSuf_B3,12340.197,9780.681,Scutellaria_suffrutescens,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+2046,ScutWri_5,69457.4143,13212.03,Scutellaria_wrightii,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2048,ScutWri_5,27841.7612,5333.618,Scutellaria_wrightii,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2061,SalCoc_3,2726.3085,6299.672,Salvia_coccinea,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2094,SalBall_3,1870.888,38515.843,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2094,SalFar_10,36755.1241,6700.451,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2094,SalChio_8,14392.4583,14343.887,Salvia_chionophylla,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2094,SalBall_5,883.9199,29959.778,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalBall_1,1316.0174,169979.795,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalFar_2,5876.9537,89267.422,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalFar_10,77290.9566,14916.053,Salvia_farinaceae,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalChio_8,31681.476,41359.27,Salvia_chionophylla,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalBall_3,9598.6133,114648.899,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,AniQWr_4,160057.5664,2232.502,Anisacanthus_quadrifidus,BIRD,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+2095,SalBall_5,2188.0312,108119.251,Salvia_ballotiflora,BEE,Alkaloids,Tryptophan alkaloids,Simple indole alkaloids
+21032,SalAzu_12,25378.551,1787.682,Salvia_azurea,BEE,Terpenoids,Diterpenoids,Colensane and Clerodane diterpenoids
+2154,AniQWr_2,7692.481,3483.081,Anisacanthus_quadrifidus,BIRD,Amino acids and Peptides,Small peptides,Dipeptides
+2163,AniQWr_4,5214.301,4553.298,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+2163,AniQWr_2,21595.473,5802.617,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+2170,AniQWr_2,17868.978,4698.518,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+2170,AniQWr_4,4087.785,3874.229,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+21755,SalBall_1,2658934.363,14195.6,Salvia_ballotiflora,BEE,Terpenoids,Diterpenoids,Abietane diterpenoids
+21755,SalBall_3,3932359.293,15918.32,Salvia_ballotiflora,BEE,Terpenoids,Diterpenoids,Abietane diterpenoids
+21975,AniQWr_7,81898.152,21184.092,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Acyclic monoterpenoids
+21975,AniQWr_1,39301.437,5428.353,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Acyclic monoterpenoids
+21975,AniQWr_3,30242.709,6419.138,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Acyclic monoterpenoids
+23062,SalLeu_5,15425.923,4419.617,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Polyamines
+23062,SalLeu_23,10293.565,6040.588,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Polyamines
+23062,SalLeu_21,9426.819,4440.24,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Polyamines
+23349,ScutSuf_8,178499.885,14930.06,Scutellaria_suffrutescens,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+23424,StaCoc_3,8193.518,15665.462,Stachys_Coccinea,BIRD,Fatty acids,Fatty Acids and Conjugates,Monoacylglycerols
+23424,AniQWr_3,4659.913,11703.88,Anisacanthus_quadrifidus,BIRD,Fatty acids,Fatty Acids and Conjugates,Monoacylglycerols
+23424,SalGreg_5,20392.883,2432.518,Salvia_greggii,BIRD,Fatty acids,Fatty Acids and Conjugates,Monoacylglycerols
+23924,ScutWri_4,7356.8149,73829.28,Scutellaria_wrightii,BEE,Fatty acids,Fatty Acids and Conjugates,Polyamines
+23924,ScutWri_6,2006.4383,29072.928,Scutellaria_wrightii,BEE,Fatty acids,Fatty Acids and Conjugates,Polyamines
+25055,ScutWri_6,7346.342,24442.53,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+25059,ScutWri_6,42931.4153,139824.07,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Abeotaxane diterpenoids
+25073,ScutWri_6,19044.06,36492.478,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+25494,ScutWri_6,4079.997,7918.51,Scutellaria_wrightii,BEE,Polyketides,Meroterpenoids,Triketide meroterpenoids
+25669,ScutWri_6,6446.614,19130.91,Scutellaria_wrightii,BEE,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+25765,ScutWri_6,73294.982,170599.41,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Jatrophane diterpenoids
+26771,ScutWri_6,16873.404,41667.614,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Labdane diterpenoids
+26896,ScutWri_6,29224.22,36987.25,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+26928,ScutWri_6,2571.707,45345.7,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Cembrane diterpenoids
+2698,AniQWr_1,21658.4,6229.537,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenolic acids (C6-C1),Shikimic acids and derivatives
+2699,AniQWr_1,78787.43,22077.39,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+27078,ScutWri_6,7198.25,31753.65,Scutellaria_wrightii,BEE,Terpenoids,Steroids,Androstane steroids
+27084,ScutWri_6,38590.27,324997.76,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+27097,ScutWri_6,16320.748,91552.149,Scutellaria_wrightii,BEE,Terpenoids,Sesquiterpenoids,Tetracyclic diterpenoids
+27338,SalLeu_21,8688.293,10021.642,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Hydrocarbons
+27338,SalLeu_23,15215.439,14506.897,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Hydrocarbons
+27344,ScutWri_6,8482.689,28674.29,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Pimarane and Isopimarane diterpenoids
+27371,ScutWri_6,9093.465,33451.67,Scutellaria_wrightii,BEE,Terpenoids,Apocarotenoids,Miscellaneous apocarotenoids
+27375,ScutWri_6,10436.53,43482.23,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+27377,ScutWri_6,39429.63,166842.68,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Jatrophane diterpenoids
+27386,ScutWri_5,68839.41,30556.77,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Jatrophane diterpenoids
+27386,ScutWri_6,131197.7,852263.2,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Jatrophane diterpenoids
+27415,SalLeu_23,70555.78,91618.81,Salvia_leucantha,BEE,Terpenoids,Sesquiterpenoids,Germacrane sesquiterpenoids
+27454,ScutWri_6,6201.276,17259.41,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+27470,ScutSuf_8,47867.12,7697.988,Scutellaria_suffrutescens,BIRD,Terpenoids,Diterpenoids,Pimarane and Isopimarane diterpenoids
+27470,SalCoc_4,72701.24,2577.517,Salvia_coccinea,BIRD,Terpenoids,Diterpenoids,Pimarane and Isopimarane diterpenoids
+27497,ScutWri_6,63050.348,100502.1,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Jatrophane diterpenoids
+27737,ScutWri_6,43546.997,34333.833,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+27846,SalRoe_5,103776.184,26994.59,Salvia_roemeriana,BIRD,Terpenoids,Diterpenoids,Labdane diterpenoids
+28037,ScutSuf_B3,59924.008,4226.503,Scutellaria_suffrutescens,BIRD,Fatty acids,Octadecanoids,Other Octadecanoids
+28037,ScutSuf_8,28113.867,7778.541,Scutellaria_suffrutescens,BIRD,Fatty acids,Octadecanoids,Other Octadecanoids
+2808,AniQWr_7,7748.022,15301.416,Anisacanthus_quadrifidus,BIRD,Polyketides,Cyclic polyketides,Phthalide derivatives
+2808,AniQWr_4,8510.412,1409.634,Anisacanthus_quadrifidus,BIRD,Polyketides,Cyclic polyketides,Phthalide derivatives
+2808,AniQWr_3,1375.467,1805.922,Anisacanthus_quadrifidus,BIRD,Polyketides,Cyclic polyketides,Phthalide derivatives
+28121,ScutSuf_8,27249.91,9968.19,Scutellaria_suffrutescens,BIRD,Terpenoids,Diterpenoids,Podocarpane diterpenoids
+28121,ScutWri_6,16076.26,38591.566,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Podocarpane diterpenoids
+28147,ScutWri_6,14078.943,15059.408,Scutellaria_wrightii,BEE,Terpenoids,Apocarotenoids,Apocarotenoids (β-)
+28277,SalGreg_2,5037002.63,5716.983,Salvia_greggii,BIRD,Terpenoids,Diterpenoids,Kaurane and Phyllocladane diterpenoids
+2834,AniQWr_2,74636.702,5579.41,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenolic acids (C6-C1),Shikimic acids and derivatives
+2834,AniQWr_4,40651.845,6818.093,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenolic acids (C6-C1),Shikimic acids and derivatives
+28462,ScutWri_6,4341.438,15072.491,Scutellaria_wrightii,BEE,Terpenoids,Diterpenoids,Tetracyclic diterpenoids
+28608,SalGreg_5,1407526.8,2624.99,Salvia_greggii,BIRD,Terpenoids,Diterpenoids,Norlabdane diterpenoids
+29351,AniQWr_2,45873.926,55731.2,Anisacanthus_quadrifidus,BIRD,Alkaloids,Ornithine alkaloids,Polyamines
+29351,SalReg_W4,66735.856,107783.82,Salvia_regla,BIRD,Alkaloids,Ornithine alkaloids,Polyamines
+29351,AniQWr_4,41862.955,160580.62,Anisacanthus_quadrifidus,BIRD,Alkaloids,Ornithine alkaloids,Polyamines
+29351,SalReg_B1,162057.832,27468.1,Salvia_regla,BIRD,Alkaloids,Ornithine alkaloids,Polyamines
+29353,SalReg_B1,139039.826,21084.22,Salvia_regla,BIRD,Fatty acids,Fatty amides,N-acyl ethanolamines (endocannabinoids)
+29353,AniQWr_4,37398.213,129494.08,Anisacanthus_quadrifidus,BIRD,Fatty acids,Fatty amides,N-acyl ethanolamines (endocannabinoids)
+29353,SalReg_W4,57075.144,83773.86,Salvia_regla,BIRD,Fatty acids,Fatty amides,N-acyl ethanolamines (endocannabinoids)
+29353,AniQWr_2,40620.883,44439.99,Anisacanthus_quadrifidus,BIRD,Fatty acids,Fatty amides,N-acyl ethanolamines (endocannabinoids)
+29353,SalAzu_10,24898.667,38133.06,Salvia_azurea,BEE,Fatty acids,Fatty amides,N-acyl ethanolamines (endocannabinoids)
+3003,AniQWr_3,34823.48,47327.06,Anisacanthus_quadrifidus,BIRD,Amino acids and Peptides,Small peptides,Tripeptides
+3003,AniQWr_2,103023.53,38584.1,Anisacanthus_quadrifidus,BIRD,Amino acids and Peptides,Small peptides,Tripeptides
+3003,AniQWr_4,80463.26,45187.84,Anisacanthus_quadrifidus,BIRD,Amino acids and Peptides,Small peptides,Tripeptides
+3003,AniQWr_1,41698,34000.9,Anisacanthus_quadrifidus,BIRD,Amino acids and Peptides,Small peptides,Tripeptides
+30079,ScutSuf_B3,17396.216,11277.98,Scutellaria_suffrutescens,BIRD,Fatty acids,Glycerolipids,Monoacylglycerols
+30094,SalLeu_23,1666423,1893753,Salvia_leucantha,BEE,Fatty acids,Fatty acyls,Monoacylglycerols
+3034,AniQWr_2,412464.6,66267.66,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3034,AniQWr_1,103062.4,47562.55,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3034,AniQWr_4,224176.99,68949.83,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3036,AniQWr_4,1866706.1,701206.6,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3036,AniQWr_2,2993647.9,602761.6,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3041,AniQWr_1,176427.5,66190.8,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3041,AniQWr_4,301435.6,96341.51,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3041,AniQWr_2,556770.9,90117.01,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3119,AniQWr_1,2551.0775,3361.807,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,2-pyrone derivatives
+32510,SalLeu_21,164484.5,108191.3,Salvia_leucantha,BEE,Fatty acids,Fatty amides,N-acyl amines
+32510,SalBall_3,101410.9,199821.4,Salvia_ballotiflora,BEE,Fatty acids,Fatty amides,N-acyl amines
+3358,AniQWr_1,7550.496,5921.489,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3358,AniQWr_3,7996.025,7177.302,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3371,AniQWr_3,3432.695,2520.237,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3371,AniQWr_1,3136.156,1831.06,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+356,SalBall_5,101814.741,402849.72,Salvia_ballotiflora,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+356,SalCoc_4,17925.031,87208.39,Salvia_coccinea,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+3717,AniQWr_2,50391.35,25167.02,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+3717,AniQWr_7,27133.75,382358.8,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+3717,AniQWr_4,18895.62,24090.67,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+3717,AniQWr_3,13530.19,30961.82,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+3717,AniQWr_1,14558.84,19101.66,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+3719,AniQWr_1,7442.291,10447.65,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenylpropanoids (C6-C3),Cinnamic acids and derivatives
+3719,AniQWr_4,10129.786,13730.88,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenylpropanoids (C6-C3),Cinnamic acids and derivatives
+3719,AniQWr_2,28907.45,13626.23,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenylpropanoids (C6-C3),Cinnamic acids and derivatives
+3719,AniQWr_7,12047.49,214219.17,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenylpropanoids (C6-C3),Cinnamic acids and derivatives
+3719,AniQWr_3,7255.316,17401.66,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Phenylpropanoids (C6-C3),Cinnamic acids and derivatives
+374,SalGreg_4,118567.261,44536.63,Salvia_greggii,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalFar_3,216144.499,535832.93,Salvia_farinaceae,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalGreg_7,119643.739,190129.49,Salvia_greggii,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalFar_20,46759.688,241064.91,Salvia_farinaceae,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutSuf_B1,17536.711,227544.48,Scutellaria_suffrutescens,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalRoe_6,95311.936,200421.84,Salvia_roemeriana,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutSuf_B2,73275.287,311377.11,Scutellaria_suffrutescens,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalBle_5,31846.017,316489.87,Salvia_blepharophylla,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalBle_SBW5,237594.712,350588.55,Salvia_blepharophylla,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalBall_4,117811.06,450352.48,Salvia_ballotiflora,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalCoc_5,151994.238,239921.84,Salvia_coccinea,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutWri_5,129145.235,159760.26,Scutellaria_wrightii,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutSuf_2,94482.096,427508.88,Scutellaria_suffrutescens,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,PhysVir_3,54997.959,2244294.64,Physostegia_virginiana,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutSuf_B3,24180.998,285487.66,Scutellaria_suffrutescens,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutWri_4,94415.246,284287.28,Scutellaria_wrightii,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalLeu_26,114817.011,180130.34,Salvia_leucantha,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalGreg_4,228760.726,189502.13,Salvia_greggii,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalReg_FM15,72993.564,92541.63,Salvia_regla,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalAzu_11,279987.097,86499.83,Salvia_azurea,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalBle_23,89938.725,776493.4,Salvia_blepharophylla,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,ScutWri_6,67626.445,217200.07,Scutellaria_wrightii,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalRoe_7,110806.667,81185.96,Salvia_roemeriana,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+375,SalRoe_1,82384.071,140977.7,Salvia_roemeriana,BIRD,Amino acids and Peptides,Small peptides,Aminoacids
+3752,AniQWr_4,28231.42,42653.4,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+3752,AniQWr_2,134579.59,44403.38,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+396,SalBall_4,43209.925,239487.8,Salvia_ballotiflora,BEE,Amino acids and Peptides,Small peptides,Aminoacids
+4153,AniQWr_1,24149.07,4298.039,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4153,AniQWr_2,104548.57,3832.219,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4153,AniQWr_3,25265.49,6614.742,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4153,AniQWr_4,60527.37,4393.736,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+451,AniQWr_3,301562.15,764744.2,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+451,AniQWr_2,669744.47,1214168.2,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+451,AniQWr_1,228822.53,1130402.4,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+451,AniQWr_4,649374.09,1088486.3,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+451,AniQWr_8,177097.02,1583782.9,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+451,AniQWr_7,386686.08,1823527.8,Anisacanthus_quadrifidus,BIRD,Alkaloids,Nicotinic acid alkaloids,Pyridine alkaloids
+4577,AniQWr_7,10129.992,20554.921,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4577,AniQWr_3,1554.346,3949.443,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4577,AniQWr_2,17305.053,6000.963,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4583,AniQWr_3,1003.462,3457.509,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+4588,AniQWr_3,8225.99,4166.501,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+4588,AniQWr_1,3691.898,2777.717,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+4588,AniQWr_2,39066.602,5994.475,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+4588,AniQWr_7,13149.285,21845.493,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Coumarins,Simple coumarins
+500,ScutSuf_5,16709.307,1475374.5,Scutellaria_suffrutescens,BIRD,Carbohydrates,Saccharides,Monosaccharides
+500,SalFar_2,9334.341,1266115.9,Salvia_farinaceae,BEE,Carbohydrates,Saccharides,Monosaccharides
+500,ScutSuf_2,23498.062,2843668.4,Scutellaria_suffrutescens,BIRD,Carbohydrates,Saccharides,Monosaccharides
+528,AniQWr_1,3520.4375,292074.2,Anisacanthus_quadrifidus,BIRD,Carbohydrates,Saccharides,Disaccharides
+528,SalBall_2,9602.0605,739416.5,Salvia_ballotiflora,BEE,Carbohydrates,Saccharides,Disaccharides
+528,SalDar_20,29203.3558,188556.5,Salvia_darcyi,BIRD,Carbohydrates,Saccharides,Disaccharides
+528,ScutWri_5,15947.1537,446629.8,Scutellaria_wrightii,BEE,Carbohydrates,Saccharides,Disaccharides
+528,SalFar_13,11554.1267,725233.1,Salvia_farinaceae,BEE,Carbohydrates,Saccharides,Disaccharides
+528,SalDar_15,23637.8061,1830529.3,Salvia_darcyi,BIRD,Carbohydrates,Saccharides,Disaccharides
+6076,AniQWr_1,926.1757,4767.259,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+6145,AniQWr_3,2403.726,6456.786,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+8528,AniQWr_3,9639.131,1408.125,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+8528,AniQWr_1,7763.208,2514.435,Anisacanthus_quadrifidus,BIRD,Shikimates and Phenylpropanoids,Flavonoids,Flavones
+9161,AniQWr_2,1867779.8,2562.583,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids
+9161,AniQWr_4,995944,2342.787,Anisacanthus_quadrifidus,BIRD,Terpenoids,Monoterpenoids,Iridoids monoterpenoids

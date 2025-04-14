@@ -1,0 +1,20 @@
+Poll	Species2	Salvia	Species3	Species4
+Bird	Anisacanthus quadrifidus 	NO	Anisacanthus.quadrifidus 	Anisacanthus_quadrifidus 
+Bee	Physostegia virginiana	NO	Physostegia.virginiana	Physostegia_virginiana
+Bee	Ruellia brittoniana	NO	Ruellia.brittoniana	Ruellia_brittoniana
+Bee	Salvia azurea	YES	Salvia.azurea	Salvia_azurea
+Bee	Salvia ballotiflora	YES	Salvia.ballotiflora	Salvia_ballotiflora
+Bird	Salvia blepharophylla 	YES	Salvia.blepharophylla 	Salvia_blepharophylla 
+Bee	Salvia chionophylla	YES	Salvia.chionophylla	Salvia_chionophylla
+Bird	Salvia coccinea	YES	Salvia.coccinea	Salvia_coccinea
+Bird	Salvia darcyi	YES	Salvia.darcyi	Salvia_darcyi
+Bee	Salvia farinacea	YES	Salvia.farinacea	Salvia_farinacea
+Bird	Salvia greggii	YES	Salvia.greggii	Salvia_greggii
+Bee	Salvia leucantha	YES	Salvia.leucantha	Salvia_leucantha
+Bird	Salvia microphylla	YES	Salvia.microphylla	Salvia_microphylla
+Bird	Salvia regla	YES	Salvia.regla	Salvia_regla
+Bird	Salvia roemeriana	YES	Salvia.roemeriana	Salvia_roemeriana
+Bird	Scutellaria suffrutescens	NO	Scutellaria.suffrutescens	Scutellaria_suffrutescens
+Bee	Scutellaria wrightii	NO	Scutellaria.wrightii	Scutellaria_wrightii
+Bee	Salvia sinaloensis	YES	Salvia.sinaloensis	Salvia_sinaloensis
+Bird	Stachys coccinea	NO	Stachys.coccinea	Stachys_coccinea

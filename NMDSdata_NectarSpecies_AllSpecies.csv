@@ -1,0 +1,20 @@
+,Row.Names,NMDS1,NMDS2,Species,Pollinator,species2,Salvia,species3,species4
+Anisacanthus.quadrifidus,Anisacanthus.quadrifidus,-0.30107067,0.444080609,Anisacanthus.quadrifidus,Bird,Anisacanthus quadrifidus,NO,Anisacanthus.quadrifidus,Anisacanthus_quadrifidus
+Physostegia.virginiana,Physostegia.virginiana,-0.357988614,-0.055255957,Physostegia.virginiana,Bee,Physostegia virginiana,NO,Physostegia.virginiana,Physostegia_virginiana
+Ruellia.brittoniana,Ruellia.brittoniana,-0.227605416,-0.143213418,Ruellia.brittoniana,Bee,Ruellia brittoniana,NO,Ruellia.brittoniana,Ruellia_brittoniana
+Salvia.azurea,Salvia.azurea,0.379385732,-0.022416183,Salvia.azurea,Bee,Salvia azurea,YES,Salvia.azurea,Salvia_azurea
+Salvia.ballotiflora,Salvia.ballotiflora,0.25054192,0.181496724,Salvia.ballotiflora,Bee,Salvia ballotiflora,YES,Salvia.ballotiflora,Salvia_ballotiflora
+Salvia.blepharophylla,Salvia.blepharophylla,-0.027307936,0.155079493,Salvia.blepharophylla,Bird,Salvia blepharophylla,YES,Salvia.blepharophylla,Salvia_blepharophylla
+Salvia.chionophylla,Salvia.chionophylla,0.602517881,0.035956308,Salvia.chionophylla,Bee,Salvia chionophylla,YES,Salvia.chionophylla,Salvia_chionophylla
+Salvia.coccinea,Salvia.coccinea,-0.031436455,0.008817079,Salvia.coccinea,Bird,Salvia coccinea,YES,Salvia.coccinea,Salvia_coccinea
+Salvia.darcyi,Salvia.darcyi,-0.029440591,0.096484474,Salvia.darcyi,Bird,Salvia darcyi,YES,Salvia.darcyi,Salvia_darcyi
+Salvia.farinacea,Salvia.farinacea,0.149208722,0.014882685,Salvia.farinacea,Bee,Salvia farinacea,YES,Salvia.farinacea,Salvia_farinacea
+Salvia.greggii,Salvia.greggii,-0.07992259,-0.090499685,Salvia.greggii,Bird,Salvia greggii,YES,Salvia.greggii,Salvia_greggii
+Salvia.leucantha,Salvia.leucantha,-0.018965524,0.10355362,Salvia.leucantha,Bee,Salvia leucantha,YES,Salvia.leucantha,Salvia_leucantha
+Salvia.microphylla,Salvia.microphylla,-0.009549363,-0.219691038,Salvia.microphylla,Bird,Salvia microphylla,YES,Salvia.microphylla,Salvia_microphylla
+Salvia.regla,Salvia.regla,0.010126203,-0.014294084,Salvia.regla,Bird,Salvia regla,YES,Salvia.regla,Salvia_regla
+Salvia.roemeriana,Salvia.roemeriana,-0.141421919,-0.273285699,Salvia.roemeriana,Bird,Salvia roemeriana,YES,Salvia.roemeriana,Salvia_roemeriana
+Salvia.sinaloensis,Salvia.sinaloensis,0.136490608,-0.138042499,Salvia.sinaloensis,Bee,Salvia sinaloensis,YES,Salvia.sinaloensis,Salvia_sinaloensis
+Scutellaria.suffrutescens,Scutellaria.suffrutescens,-0.124837494,-0.072499227,Scutellaria.suffrutescens,Bird,Scutellaria suffrutescens,NO,Scutellaria.suffrutescens,scutellaria_suffrutescens
+Scutellaria.wrightii,Scutellaria.wrightii,-0.19211045,0.039458428,Scutellaria.wrightii,Bee,Scutellaria wrightii,NO,Scutellaria.wrightii,Scutellaria_wrightii
+Stachys.coccinea,Stachys.coccinea,0.013385955,-0.050611627,Stachys.coccinea,Bird,Stachys coccinea,NO,Stachys.coccinea,Stachys_coccinea

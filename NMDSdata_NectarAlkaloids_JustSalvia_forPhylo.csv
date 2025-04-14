@@ -1,0 +1,14 @@
+,Row.Names,NMDS1,NMDS2,Species,Pollinator,Pair,species2,Salvia,species3
+Salvia.azurea,Salvia.azurea,-0.487437448,-0.057766207,SalAzu_5,Bee,1,Salvia azurea,YES,Salvia_azurea
+Salvia.ballotiflora,Salvia.ballotiflora,-0.29661281,-0.150754637,SalBall_6,Bee,3,Salvia ballotiflora,YES,Salvia_ballotiflora
+Salvia.blepharophylla,Salvia.blepharophylla,0.479663141,-0.142869617,SalBle_7,Bird,2,Salvia blepharophylla,YES,Salvia_blepharophylla
+Salvia.chionophylla,Salvia.chionophylla,-0.487434718,-0.057766552,SalChio_8,Bee,2,Salvia chionophylla,YES,Salvia_chionophylla
+Salvia.coccinea,Salvia.coccinea,0.109490358,0.112439901,SalCoc_9,Bird,1,Salvia coccinea,YES,Salvia_coccinea
+Salvia.darcyi,Salvia.darcyi,0.484474569,-0.204735269,SalDar_10,Bird,NA,Salvia darcyi,YES,Salvia_darcyi
+Salvia.farinacea,Salvia.farinacea,-0.369857049,-0.150382944,SalFar_11,Bee,NA,Salvia farinacea,YES,Salvia_farinacea
+Salvia.greggii,Salvia.greggii,0.42581158,0.153921086,SalGre_12,Bird,NA,Salvia greggii,YES,Salvia_greggii
+Salvia.leucantha,Salvia.leucantha,0.300324937,-0.195505039,SalLeu_13,Bee,NA,Salvia leucantha,YES,Salvia_leucantha
+Salvia.microphylla,Salvia.microphylla,-0.279457023,0.275029429,SalMic_14,Bird,NA,Salvia microphylla,YES,Salvia_microphylla
+Salvia.regla,Salvia.regla,0.479663695,-0.142869215,SalReg_15,Bird,3,Salvia regla,YES,Salvia_regla
+Salvia.roemeriana,Salvia.roemeriana,0.115092964,0.684763391,SalRoe_16,Bird,NA,Salvia roemeriana,YES,Salvia_roemeriana
+Salvia.sinaloensis,Salvia.sinaloensis,-0.473722196,-0.123504329,SalSin_20,Bee,NA,Salvia sinaloensis,YES,Salvia_sinaloensis
