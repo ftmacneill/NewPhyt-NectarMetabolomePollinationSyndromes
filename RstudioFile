@@ -792,6 +792,348 @@ fig_Nec_Alkaloids
 #####################################################################################################################################################################################################################################################################################################
 #Recalculating with just Salvia 
 
+meta_Spp_sal<-subset(meta, meta$Salvia=="YES")
+
+dat2<-subset(dat, rownames(dat) %in% meta_Spp_sal$Species3)
+dat2<-t(dat2)
+dat2<-subset(dat2, rownames(dat2) %in% meta_Spp_sal$Species3)
+dat<-dat2
+
+dis2<-dat
+dis2<-as.matrix(dat)
+
+examples_nmds.all=metaMDS(dis2, k=2, trymax=100)
+nmds.point.all=examples_nmds.all$points
+data.scores.allsamp<-as.data.frame(vegan::scores(examples_nmds.all))
+examples_nmds.all$stress###.126
+
+meta<-meta_Spp_sal
+meta<-subset(meta, meta$Species3 %in% rownames(data.scores.allsamp))
+setdiff(meta$Species3, rownames(data.scores.allsamp))
+
+data.scores.allsamp<-cbind(Row.Names=rownames(data.scores.allsamp),data.scores.allsamp)
+arranged.alldata<-data.scores.allsamp%>%arrange(Row.Names)
+
+
+data<-arranged.alldata
+target<-rownames(dis2)
+print(target)
+
+df2<-data[match(target, data$Row.Names),]
+View(df2)
+
+meta2<-meta[match(target, meta$Species3),]
+data<-df2
+meta<-meta2
+
+
+data$Species<-meta$Species
+data$Pollinator<-meta$Poll
+data$Pair<-meta$PairMatch
+data$species2<-meta$Species2
+data$Salvia<-meta$Salvia
+data$species3<-meta$Species3
+View(data)
+
+identical(rownames(dis2), data$Row.Names)##True
+NMDS_NecSpp_Salvia<-data
+
+ano.NectarAlkaloids_Salvia<-anosim(dis2, data$Pollinator, distance="bray", permutations=999)
+print(ano.NectarAlkaloids_Salvia)###R=.5608, p =.007
+
+
+simper.All<-simper(dis2, data$Pollinator)
+summary(simper.All)
+
+#fig4b
+data<-NMDSdata_NectarAlkaloids_JustSalvia_forPhylo
+fig_NectarAlkaloids_Salvia<-ggplot(data, aes(x = NMDS1, y = NMDS2)) + 
+    geom_point(size = 5.5, aes( shape = Pollinator, colour = Pollinator))+ 
+    stat_ellipse(aes(x=NMDS1, y=NMDS2, color= Pollinator))+
+    theme(
+    panel.background = element_blank(),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1.2),
+    legend.key = element_blank()
+  ) +
+  labs(x = "NMDS1", y = "NMDS2", colour = "Pollinator", shape = "Pollinator")
+
+
+fig_NectarAlkaloids_Salvia<-fig_NectarAlkaloids_Salvia+ scale_color_manual(values=c("cornflowerblue","red3"))
+fig_NectarAlkaloids_Salvia
+
+#####################################################################################################################################################################################################################################################################################################
+#####################################################################################################################################################################################################################################################################################################
+
+##T test for alkaloids 
+
+NecAlks<-Heat_Nectar_SpeciesLevel_Alkaloids
+NecAlks<-as.data.frame(NecAlks)
+NecAlks<-NecAlks[,2:20]
+rownames(NecAlks)<-Heat_Nectar_SpeciesLevel_Alkaloids$row.ID
+
+col_sums <- colSums(NecAlks)
+df<-as.data.frame(col_sums)
+
+df$spp<-rownames(df)
+
+bird<-c("Anisacanthus.quadrifidus","Salvia.blepharophylla","Salvia.coccinea","Salvia.darcyi","Salvia.greggii","Salvia.microphylla","Salvia.regla","Salvia.roemeriana","Scutellaria.suffrutescens","Stachys.coccinea")
+
+bird_sal<-c("Salvia.blepharophylla","Salvia.coccinea","Salvia.darcyi","Salvia.greggii","Salvia.microphylla","Salvia.regla","Salvia.roemeriana")
+
+bee<-c("Physostegia.virginiana","Ruellia.brittoniana","Salvia.azurea","Salvia.ballotiflora","Salvia.chionophylla","Salvia.farinacea","Salvia.leucantha","Salvia.sinaloensis","Scutellaria.wrightii")
+
+bee_sal<-c("Salvia.azurea","Salvia.ballotiflora","Salvia.chionophylla","Salvia.farinacea","Salvia.leucantha","Salvia.sinaloensis")
+
+df_bee<-subset(df, df$spp %in% bee)
+mean(df_bee$col_sums)#987097.2
+
+vec_beeconc<-df_bee$col_sums
+
+df_bird<-subset(df, df$spp %in% bird)
+mean(df_bird$col_sums)#169570.2
+
+vec_birdconc<-df_bird$col_sums
+
+df_bee_sal<-subset(df, df$spp %in% bee_sal)
+mean(df_bee_sal$col_sums)#1435084
+vec_beeconc_sal<-df_bee_sal$col_sums
+
+df_bird_sal<-subset(df, df$spp %in% bird_sal)
+mean(df_bird_sal$col_sums)#39974.13
+vec_birdconc_sal<-df_bird_sal$col_sums
+
+##t-test section 
+
+t.test.all<-t.test(vec_beeconc, vec_birdconc)
+print(t.test.all)
+##t = 2.1462, df = 10.136, p-value = 0.05707 
+
+t.test.sal<-t.test(vec_beeconc_sal, vec_birdconc_sal)
+print(t.test.sal)
+##t = 3.2339, df = 5.0087, p-value = 0.02305
+
+#####################################################################################################################################################################################################################################################################################################
+#####################################################################################################################################################################################################################################################################################################
+
+#Phylogenetic signal tests 
+##All species Nectar, Moran test 
+
+mytree<-multi2di(Full_tree)
+print(mytree$tip.label)
+print(mytree$edge.length)
+plot(mytree)
+
+NMDS<-NMDSdata_NectarSpecies_AllSpecies
+print(mytree$tip.label)
+
+intersect(mytree$tip.label, NMDS$species4)
+NMDS2<-subset(NMDS, NMDS$species4 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species4
+
+
+phylotraits<-phylo4d(mytree, NMDS3)
+plot(phylotraits)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+
+
+###Salvia Species Nectar, Moran 
+mytree<-multi2di(Salvia_tree)
+print(mytree$tip.label)
+plot(mytree)
+
+NMDS<-NMDSdata_NectarSpecies_JustSalvia
+
+
+print(mytree$tip.label)
+
+intersect(mytree$tip.label, NMDS$species4)
+NMDS2<-subset(NMDS, NMDS$species4 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species4
+
+
+phylotraits<-phylo4d(mytree, NMDS3)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+
+
+###Leaves, All species 
+mytree<-multi2di(Full_tree)
+print(mytree$tip.label)
+plot(mytree)
+
+NMDS<-NMDSdata_LeafSpecies_AllSpecies
+print(mytree$tip.label)
+
+NMDS2<-subset(NMDS, NMDS$species4 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species4
+
+
+phylotraits<-phylo4d(mytree, NMDS3)
+plot(phylotraits)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+
+###Leaves, just Salvia 
+
+mytree<-multi2di(Salvia_tree)
+print(mytree$tip.label)
+plot(mytree)
+
+NMDS<-NMDSdata_LeafSpecies_JustSalvia
+
+print(mytree$tip.label)
+
+intersect(mytree$tip.label, NMDS$species4)
+#setdiff(mytree22$tip.label, rownames(pcatest2))
+NMDS2<-subset(NMDS, NMDS$species4 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species4
+
+phylotraits<-phylo4d(mytree, NMDS3)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+###Nectar Alkaloids, All species 
+mytree<-multi2di(Full_tree)
+print(mytree$tip.label)
+print(mytree$edge.length)
+plot(mytree)
+
+NMDS<-NMDSdata_NectarAlkaloids_AllSpecies_forPhylo
+print(mytree$tip.label)
+
+intersect(mytree$tip.label, NMDS$species3)
+NMDS2<-subset(NMDS, NMDS$species3 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species3
+
+
+phylotraits<-phylo4d(mytree, NMDS3)
+plot(phylotraits)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+
+###Nectar Alkaloids, just Salvia 
+
+mytree<-multi2di(Salvia_tree)
+print(mytree$tip.label)
+plot(mytree)
+
+NMDS<-NMDSdata_NectarAlkaloids_JustSalvia_forPhylo
+
+print(mytree$tip.label)
+
+intersect(mytree$tip.label, NMDS$species3)
+#setdiff(mytree22$tip.label, rownames(pcatest2))
+NMDS2<-subset(NMDS, NMDS$species3 %in% mytree$tip.label)
+NMDS3<-NMDS2[,3:4]
+rownames(NMDS3)<-NMDS2$species3
+
+
+phylotraits<-phylo4d(mytree, NMDS3)
+plot(phylotraits)
+moran.test <- adephylo::abouheif.moran(phylotraits,method="Abouheif")
+print(moran.test)
+
+#####################################################################################################################################################################################################################################################################################################
+Blomberg's K 
+#####################################################################################################################################################################################################################################################################################################
+##Nectar, All species 
+
+Tree_All<-multi2di(Full_tree)
+order<-Full_tree$tip.label
+print(order)
+plot(Full_tree)
+
+NMDS_NecAll<-NMDSdata_NectarSpecies_AllSpecies
+NMDS_NecAll2<-NMDS_NecAll%>%filter(species4 %in% order)%>%arrange(match(species4,order))
+NecAllTrait<-NMDS_NecAll2$NMDS1
+names(NecAllTrait)<-NMDS_NecAll2$species4
+
+phylosig(Tree_All, NecAllTrait, method="K", test=TRUE, nsim=999)
+
+##Nectar alkaloids, All species 
+
+NMDS_NecAllAlk<-NMDSdata_NectarAlkaloids_AllSpecies_forPhylo
+NMDS_NecAllAlk2<-NMDS_NecAllAlk%>%filter(species3 %in% order)%>%arrange(match(species3,order))
+NecAllAlkTrait<-NMDS_NecAllAlk2$NMDS1
+names(NecAllAlkTrait)<-NMDS_NecAllAlk2$species3
+
+phylosig(Tree_All, NecAllAlkTrait, method="K", test=TRUE, nsim=999)
+
+##Leaves, All species 
+
+NMDS_LeafAll<-NMDSdata_LeafSpecies_AllSpecies
+NMDS_LeafAll2<-NMDS_LeafAll%>%filter(species4 %in% order)%>%arrange(match(species4,order))
+LeafAllTrait<-NMDS_LeafAll2$NMDS1
+names(LeafAllTrait)<-NMDS_LeafAll2$species4
+
+phylosig(Tree_All, LeafAllTrait, method="K", test=TRUE, nsim=999)
+
+
+##############################Salvia subsets 
+
+SalTree<-multi2di(Salvia_tree)
+order<-Salvia_tree$tip.label
+plot(Salvia_tree)
+
+##Nectar, Just Salvia 
+
+NMDS_NecSal<-NMDSdata_NectarSpecies_JustSalvia
+NMDS_NecSal2<-NMDS_NecSal%>%filter(species4 %in% order)%>%arrange(match(species4,order))
+NecSalTrait<-NMDS_NecSal2$NMDS1
+names(NecSalTrait)<-NMDS_NecSal2$species4
+phylosig(SalTree, NecSalTrait, method="K", test=TRUE, nsim=999)
+
+##Nectar alkaloids, Just Salvia 
+
+NMDS_NecSalAlk<-NMDSdata_NectarAlkaloids_JustSalvia_forPhylo
+NMDS_NecSalAlk2<-NMDS_NecSalAlk%>%filter(species3 %in% order)%>%arrange(match(species3,order))
+NecSalAlkTrait<-NMDS_NecSalAlk2$NMDS1
+names(NecSalAlkTrait)<-NMDS_NecSalAlk2$species3
+phylosig(SalTree, NecSalAlkTrait, method="K", test=TRUE, nsim=999)
+
+##Leaves, Just Salvia 
+
+NMDS_LeafSal<-NMDSdata_LeafSpecies_JustSalvia
+NMDS_LeafSal2<-NMDS_LeafSal%>%filter(species4 %in% order)%>%arrange(match(species4,order))
+LeafSalTrait<-NMDS_LeafSal2$NMDS1
+names(LeafSalTrait)<-NMDS_LeafSal2$species4
+phylosig(SalTree, LeafSalTrait, method="K", test=TRUE, nsim=999)
+
+##Example, a drawing barplot
+clado<-read.newick(file="TrimmedTree_Cladogram.newick")
+mytree<-multi2di(clado)
+order<-clado$tip.label
+print(order)
+
+
+NMDS_NecAll<-NMDSdata_NectarSpecies_AllSpecies
+NMDS_NecAll2<-NMDS_NecAll%>%filter(species4 %in% order)%>%arrange(match(species4,order))
+
+NecAllTrait<-NMDS_NecAll2$NMDS1
+names(NecAllTrait)<-NMDS_NecAll2$species4
+phylotraits<-phylo4d(mytree, NecAllTrait)
+plot(phylotraits)
+barplot(phylotraits, bar.col =c("red3","cornflowerblue","cornflowerblue","red3","red3","cornflowerblue","red3","cornflowerblue","red3","cornflowerblue","red3","red3","red3","cornflowerblue","cornflowerblue","red3","red3","cornflowerblue","cornflowerblue"))
+
+##Matches figure 3c 
+
+#####################################################################################################################################################################################################################################################################################################
+#####################################################################################################################################################################################################################################################################################################
+
+
+
+
+
 
 
 
