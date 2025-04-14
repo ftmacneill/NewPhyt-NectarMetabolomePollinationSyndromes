@@ -1132,8 +1132,365 @@ barplot(phylotraits, bar.col =c("red3","cornflowerblue","cornflowerblue","red3",
 
 
 
+#Passive leaking hypothesis section- Here we subset for individuals for which we have both leaves and nectar, and then filter for compounds that appear in both tissue types to ask if concentration in nectar is predicted by concentration in leaves.
 
 
+##First, we load individual level meta data for both leaves and nectar 
+MetaNecInd<-Meta_NectarIndividuals
+MetaLeafInd<-Meta_LeafIndividuals
+
+
+##Find individuals that have both leaves and nectar 
+keeps<-intersect(MetaNecInd$SppID, MetaLeafInd$SppID)
+length(keeps)##86 individuals
+MetaBoth<-subset(Meta_NectarIndividuals, Meta_NectarIndividuals$SppID %in% keeps)
+MetaBoth$ATTRIBUTE_sppID<-MetaBoth$SppID
+
+MetaBoth<-subset(MetaNecInd, MetaNecInd$SppID %in% keeps)
+
+###Filter heat.real ind levels to just include these individuals 
+HeatNecInd<-Heat_Nectar_IndividualLevel
+HeatNecInd<-as.data.frame(HeatNecInd)
+rownames(HeatNecInd)<-HeatNecInd$row.ID
+HeatNecInd<-HeatNecInd[,2:115]
+
+HeatNecInd<-HeatNecInd%>%dplyr::select(keeps)
+
+
+HeatLeafInd<-Heat_Leaves_IndividualLevel
+HeatLeafInd<-as.data.frame(HeatLeafInd)
+rownames(HeatLeafInd)<-HeatLeafInd$row.ID
+HeatLeafInd<-HeatLeafInd[,2:167]
+
+
+HeatLeafInd<-HeatLeafInd%>%dplyr::select(keeps)
+identical(colnames(HeatNecInd), colnames(HeatLeafInd))##True
+
+##First we filter for compounds that occur in both tissue types at the species level (meaning the occur in the leaf-metabolome and nectar-metabolome of the study overall)
+bothComps1<-intersect(rownames(HeatNecInd), rownames(HeatLeafInd))
+HeatNecInd<-subset(HeatNecInd, rownames(HeatNecInd) %in% bothComps1)
+HeatLeafInd<-subset(HeatLeafInd, rownames(HeatLeafInd) %in% bothComps1)
+
+df1<-HeatNecInd
+df2<-HeatLeafInd
+
+identical(rownames(df1), rownames(df2))
+identical(colnames(df1), colnames(df2))##True
+
+##Now we have two data frames with the same dimensions, columns are individuals and rows are compounds in both tissues, one is filled with the leaf relative abundances the other with the nectar relative abundances. We now want to remove any values where for each individual, there isn't a value in both dataframes (as passive leaking would be interested in compounds where for each individual it's in both leaves and nectar)
+
+df1<-as.data.frame.matrix(df1)
+df2<-as.data.frame.matrix(df2)
+
+# Create the filtered matrices where only non-zero values in both matrices are kept
+filtered_df1 <- df1 * (df1 != 0 & df2 != 0)
+filtered_df2 <- df2 * (df1 != 0 & df2 != 0)
+
+# Print the results
+print(filtered_df1)
+print(filtered_df2)
+
+###Ok now we have the filtered versions in dataframes, we combine them
+
+df_Nec<-filtered_df1
+long_df_Nec <- df_Nec %>%
+  rownames_to_column("rowname") %>%
+  pivot_longer(cols = -rowname, 
+               names_to = "Individual", 
+               values_to = "NectarConc")
+
+# Check the reshaped data frame
+head(long_df_Nec)
+long_df_Nec<-subset(long_df_Nec, long_df_Nec$NectarConc!=0)
+
+length(unique(long_df_Nec$rowname))##115 unique compounds that are carried into both tissue types (in passive leaking)
+
+
+df_Leaf<-filtered_df2
+long_df_Leaf <- df_Leaf %>%
+  rownames_to_column("rowname") %>%
+  pivot_longer(cols = -rowname, 
+               names_to = "Individual", 
+               values_to = "LeafConc")
+
+# Check the reshaped data frame
+head(long_df_Leaf)
+long_df_Leaf<-subset(long_df_Leaf, long_df_Leaf$LeafConc!=0)
+
+length(unique(long_df_Leaf$rowname))##115
+
+intersect(colnames(long_df_Leaf), colnames(long_df_Nec))
+intersect(long_df_Leaf$rowname, long_df_Nec$rowname)##115
+
+merged_df <- merge(long_df_Leaf, long_df_Nec, by = c("rowname", "Individual"))
+
+
+###Add in classifications and species ID 
+
+##starting with species ID and Pollinator ID which comes from meta 
+meta<-MetaBoth
+colnames(meta)[colnames(meta) == "SppID"] <- "Individual"
+colnames(meta)[colnames(meta) == "Pollinator"] <- "Pollinator"
+result <- merge(merged_df, meta[, c("Individual", "Species2", "Pollinator")], by = "Individual", all.x = TRUE)
+
+
+###Work in the classifcation data 
+conf<-MasterConf
+result$row.ID<-result$rowname
+
+result<-result%>%dplyr::select(-"rowname")
+result2 <- merge(result, conf[, c("row.ID" ,"NPC.pathway", "NPC.superclass", "NPC.class")], by = "row.ID", all.x = TRUE)
+
+#write.csv(result2, file="Individual_PassiveLeaking_date.csv")
+
+##Manually quality check a few values 
+
+#some compounds that made it through the workflow 
+#Comp 1429 in SalBal 1, in HeatNecInd has 3225247.07 and in HeatLeafInd has 4022.9876 and in result2 these values are unchanged (3225247.1, 4022.988) 
+
+#Comp 18091 in SalLeu 5, in HeatNecInd has 4920.012 and in HeatLeafInd has 2631673.890 and in result2 these values are unchanged (4920.012, 2631673.890) 
+
+##Comp 500 in SalFar 2, in HeatNecInd has 1266115.90 and in HeatLeafInd has 9334.341 and in result2 these values are unchanged (1266115.900, 9334.341)
+
+
+
+
+###Passive leaking models and figures 
+
+
+
+library(lme4)
+update.packages("lme4")
+update.packages("lmerTest")
+
+
+
+reg<-Individual_PassiveLeaking
+
+dim(reg)#263, but some of these are duplicates as they occur in multiple individuals and species 
+reg$Leaves<-reg$LeafConc
+reg$Nectar<-reg$NectarConc
+reg$Species<-reg$ATTRIBUTE_species
+
+levels(as.factor(reg$Species))
+
+reglog = reg
+reglog$Nectar = log10(reglog$Nectar + 1)
+reglog$Leaves = log10(reglog$Leaves + 1)
+
+############Model all species
+mod = lmer(reglog$Nectar ~ reglog$Leaves + (1 + reglog$Leaves|Species) + (1 + reglog$Leaves|Pollinator) + (1|Individual) , data = reglog)
+summary(mod)
+
+
+####reglog$Leaves -0.01516    0.21809  1.07503  -0.070    0.955  
+
+levels(as.factor(reglog$Species))
+
+plot(reglog$Nectar ~ reglog$Leaves)
+
+colvec = rep("black", nrow(reglog))
+
+colvec[which(reglog$Species == "Physostegia_virginiana")] = "steelblue1" ##sv 
+colvec[which(reglog$Species == "Ruellia_brittoniana")] = "slateblue2"
+colvec[which(reglog$Species == "Scutellaria_wrightii")] = "skyblue1"
+colvec[which(reglog$Species == "Salvia_sinaloensis")] = "blue"
+colvec[which(reglog$Species == "Salvia_ballotiflora")] = "dodgerblue3"
+colvec[which(reglog$Species == "Salvia_chionophylla")] = "dodgerblue"
+colvec[which(reglog$Species == "Salvia_azurea")] = "deepskyblue1"
+colvec[which(reglog$Species == "Salvia_farinaceae")] = "lightslateblue"
+colvec[which(reglog$Species == "Salvia_leucantha")] = "purple1"
+colvec[which(reglog$Species == "Anisacanthus_quadrifidus")] = "tomato1"
+colvec[which(reglog$Species == "Scutellaria_suffrutescens")] = "tomato3"
+colvec[which(reglog$Species == "Stachys_Coccinea")] = "goldenrod1"
+colvec[which(reglog$Species == "Salvia_darcyi")] = "orangered1"
+colvec[which(reglog$Species == "Salvia_coccinea")] = "red1"
+colvec[which(reglog$Species == "Salvia_blepharophylla")] = "red4"
+colvec[which(reglog$Species == "Salvia_roemeriana")] = "firebrick3"
+colvec[which(reglog$Species == "Salvia_regla")] = "brown2"
+colvec[which(reglog$Species == "Salvia_greggii")] = "darkorange1"
+colvec[which(reglog$Species == "Salvia_microphylla")] = "orange1"
+
+shapevec <- rep(16, nrow(reglog)) 
+shapevec[which(reglog$Species == "Physostegia_virginiana")] = 1
+shapevec[which(reglog$Species == "Ruellia_brittoniana")] = 2
+shapevec[which(reglog$Species == "Scutellaria_wrightii")] = 3
+shapevec[which(reglog$Species == "Salvia_sinaloensis")] = 4
+shapevec[which(reglog$Species == "Salvia_ballotiflora")] = 5
+shapevec[which(reglog$Species == "Salvia_chionophylla")] = 6
+shapevec[which(reglog$Species == "Salvia_azurea")] = 7
+shapevec[which(reglog$Species == "Salvia_farinaceae")] = 8
+shapevec[which(reglog$Species == "Salvia_leucantha")] = 9
+shapevec[which(reglog$Species == "Anisacanthus_quadrifidus")] = 10
+shapevec[which(reglog$Species == "Scutellaria_suffrutescens")] = 11
+shapevec[which(reglog$Species == "Stachys_Coccinea")] = 12
+shapevec[which(reglog$Species == "Salvia_darcyi")] = 13
+shapevec[which(reglog$Species == "Salvia_coccinea")] = 14
+shapevec[which(reglog$Species == "Salvia_blepharophylla")] = 15
+shapevec[which(reglog$Species == "Salvia_roemeriana")] = 16
+shapevec[which(reglog$Species == "Salvia_regla")] = 17
+shapevec[which(reglog$Species == "Salvia_greggii")] = 18
+shapevec[which(reglog$Species == "Salvia_microphylla")] = 19
+
+
+plot(reglog$Nectar ~ reglog$Leaves, pch = shapevec, col = colvec)
+
+##Figure S3A
+PassiveLeakingPlot_AllSpp<-plot(reglog$Nectar ~ reglog$Leaves, pch = shapevec, col = colvec)
+
+#reglog$Leaves -0.01516    0.21809  1.07503  -0.070    0.955  
+##slope = -0.01516, p=0.955  no relationship/trend 
+
+
+##We can look at the coefficients 
+coef(mod)$Species
+c<-coef(mod)$Species
+c
+#####################################################################################################################################################################################################################################################################################################
+#Just Salvia Species 
+reglog.salv = reglog[grep("Salvia", reglog$Species),]
+
+head(reglog.salv)
+
+mod = lmer(reglog.salv$Nectar ~ reglog.salv$Leaves + (1 + reglog.salv$Leaves|Species) + (1 + reglog.salv$Leaves|Pollinator) + (1|Individual) , data = reglog.salv)
+
+summary(mod)
+#reglog.salv$Leaves  -0.1130     0.3252  0.9126  -0.348    0.791
+##slope = -0.1130, p=0.791  no relationship/trend 
+
+levels(as.factor(reglog.salv$Species))
+
+
+plot(reglog.salv$Nectar ~ reglog.salv$Leaves)
+
+colvec = rep("black", nrow(reglog.salv))
+colvec[which(reglog.salv$Species == "Salvia_sinaloensis")] = "blue"
+colvec[which(reglog.salv$Species == "Salvia_ballotiflora")] = "dodgerblue3"
+colvec[which(reglog.salv$Species == "Salvia_chionophylla")] = "dodgerblue"
+colvec[which(reglog.salv$Species == "Salvia_azurea")] = "deepskyblue1"
+colvec[which(reglog.salv$Species == "Salvia_farinaceae")] = "lightslateblue"
+colvec[which(reglog.salv$Species == "Salvia_leucantha")] = "purple1"
+colvec[which(reglog.salv$Species == "Salvia_darcyi")] = "orangered1"
+colvec[which(reglog.salv$Species == "Salvia_coccinea")] = "red1"
+colvec[which(reglog.salv$Species == "Salvia_blepharophylla")] = "red4"
+colvec[which(reglog.salv$Species == "Salvia_roemeriana")] = "firebrick3"
+colvec[which(reglog.salv$Species == "Salvia_regla")] = "brown2"
+colvec[which(reglog.salv$Species == "Salvia_greggii")] = "darkorange1"
+colvec[which(reglog.salv$Species == "Salvia_microphylla")] = "orange1"
+
+
+shapevec <- rep(16, nrow(reglog)) 
+shapevec[which(reglog.salv$Species == "Salvia_sinaloensis")] = 4
+shapevec[which(reglog.salv$Species == "Salvia_ballotiflora")] = 5
+shapevec[which(reglog.salv$Species == "Salvia_chionophylla")] = 6
+shapevec[which(reglog.salv$Species == "Salvia_azurea")] = 7
+shapevec[which(reglog.salv$Species == "Salvia_farinaceae")] = 8
+shapevec[which(reglog.salv$Species == "Salvia_leucantha")] = 9
+shapevec[which(reglog.salv$Species == "Salvia_darcyi")] = 13
+shapevec[which(reglog.salv$Species == "Salvia_coccinea")] = 14
+shapevec[which(reglog.salv$Species == "Salvia_blepharophylla")] = 15
+shapevec[which(reglog.salv$Species == "Salvia_roemeriana")] = 16
+shapevec[which(reglog.salv$Species == "Salvia_regla")] = 17
+shapevec[which(reglog.salv$Species == "Salvia_greggii")] = 18
+shapevec[which(reglog.salv$Species == "Salvia_microphylla")] = 19
+
+
+
+plot(reglog.salv$Nectar ~ reglog.salv$Leaves, pch = shapevec, col = colvec)
+
+
+
+PassiveLeakingPlot_AllSal<-plot(reglog.salv$Nectar ~ reglog.salv$Leaves, pch = shapevec, col = colvec)
+#####################################################################################################################################################################################################################################################################################################
+#All bee species
+reglog.bee = reglog[which(reglog$Pollinator == "BEE"),]
+reglog.bird = reglog[which(reglog$Pollinator == "BIRD"),]
+
+mod = lmer(reglog.bee$Nectar ~ reglog.bee$Leaves + (1 + reglog.bee$Leaves|Species) + (1|Individual) , data = reglog.bee)
+
+summary(mod)
+#reglog.bee$Leaves  -0.2378     0.1904  4.2753  -1.248 0.275859  
+
+
+##Figure for all bee 
+levels(as.factor(reglog.bee$Species))
+
+plot(reglog.bee$Nectar ~ reglog.bee$Leaves)
+
+#colvec = rep("black", nrow(reglog.bee))
+
+colvec[which(reglog.bee$Species == "Physostegia_virginiana")] = "steelblue1"
+colvec[which(reglog.bee$Species == "Ruellia_brittoniana")] = "slateblue2"
+colvec[which(reglog.bee$Species == "Scutellaria_wrightii")] = "skyblue1"
+colvec[which(reglog.bee$Species == "Salvia_sinaloensis")] = "blue"
+colvec[which(reglog.bee$Species == "Salvia_ballotiflora")] = "dodgerblue3"
+colvec[which(reglog.bee$Species == "Salvia_chionophylla")] = "dodgerblue"
+colvec[which(reglog.bee$Species == "Salvia_azurea")] = "deepskyblue1"
+colvec[which(reglog.bee$Species == "Salvia_farinaceae")] = "lightslateblue"
+colvec[which(reglog.bee$Species == "Salvia_leucantha")] = "purple1"
+
+
+shapevec = rep(16, nrow(reglog.bee))
+shapevec <- rep(16, nrow(reglog)) 
+shapevec[which(reglog.bee$Species == "Physostegia_virginiana")] = 1
+shapevec[which(reglog.bee$Species == "Ruellia_brittoniana")] = 2
+shapevec[which(reglog.bee$Species == "Scutellaria_wrightii")] = 3
+shapevec[which(reglog.bee$Species == "Salvia_sinaloensis")] = 4
+shapevec[which(reglog.bee$Species == "Salvia_ballotiflora")] = 5
+shapevec[which(reglog.bee$Species == "Salvia_chionophylla")] = 6
+shapevec[which(reglog.bee$Species == "Salvia_azurea")] = 7
+shapevec[which(reglog.bee$Species == "Salvia_farinaceae")] = 8
+shapevec[which(reglog.bee$Species == "Salvia_leucantha")] = 9
+
+
+
+
+plot(reglog.bee$Nectar ~ reglog.bee$Leaves, pch = shapevec, col = colvec)
+
+PassiveLeakingPlot_AllBeeSpp<-plot(reglog.bee$Nectar ~ reglog.bee$Leaves, pch = shapevec, col = colvec)
+
+#####################################################################################################################################################################################################################################################################################################
+#All bird species
+
+mod = lmer(reglog.bird$Nectar ~ reglog.bird$Leaves + (1 + reglog.bird$Leaves|Species) + (1|Individual) , data = reglog.bird)
+
+summary(mod)
+
+##reglog.bird$Leaves   0.1784     0.2061 6.0045   0.865  0.42002  
+
+levels(as.factor(reglog.bird$Species))
+
+plot(reglog.bird$Nectar ~ reglog.bird$Leaves)
+
+colvec = rep("black", nrow(reglog.bird))
+
+colvec[which(reglog.bird$Species == "Anisacanthus_quadrifidus")] = "tomato1"
+colvec[which(reglog.bird$Species == "Scutellaria_suffrutescens")] = "tomato3"
+colvec[which(reglog.bird$Species == "Stachys_Coccinea")] = "goldenrod1"
+colvec[which(reglog.bird$Species == "Salvia_darcyi")] = "orangered1"
+colvec[which(reglog.bird$Species == "Salvia_coccinea")] = "red1"
+colvec[which(reglog.bird$Species == "Salvia_blepharophylla")] = "red4"
+colvec[which(reglog.bird$Species == "Salvia_roemeriana")] = "firebrick3"
+colvec[which(reglog.bird$Species == "Salvia_regla")] = "brown2"
+colvec[which(reglog.bird$Species == "Salvia_greggii")] = "darkorange1"
+colvec[which(reglog.bird$Species == "Salvia_microphylla")] = "orange1"
+
+shapevec = rep(17, nrow(reglog.bird))
+shapevec[which(reglog.bird$Species == "Anisacanthus_quadrifidus")] = 10
+shapevec[which(reglog.bird$Species == "Scutellaria_suffrutescens")] = 11
+shapevec[which(reglog.bird$Species == "Stachys_Coccinea")] = 12
+shapevec[which(reglog.bird$Species == "Salvia_darcyi")] = 13
+shapevec[which(reglog.bird$Species == "Salvia_coccinea")] = 14
+shapevec[which(reglog.bird$Species == "Salvia_blepharophylla")] = 15
+shapevec[which(reglog.bird$Species == "Salvia_roemeriana")] = 16
+shapevec[which(reglog.bird$Species == "Salvia_regla")] = 17
+shapevec[which(reglog.bird$Species == "Salvia_greggii")] = 18
+shapevec[which(reglog.bird$Species == "Salvia_microphylla")] = 19
+
+
+plot(reglog.bird$Nectar ~ reglog.bird$Leaves, pch = shapevec, col = colvec)
+
+PassiveLeakingPlot_AllBirdSpp<-plot(reglog.bird$Nectar ~ reglog.bird$Leaves, pch = shapevec, col = colvec)
 
 
 
